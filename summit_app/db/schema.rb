@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_07_205439) do
+ActiveRecord::Schema.define(version: 2021_04_07_211249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "author_id", null: false
+    t.integer "goal_id", null: false
+    t.string "title", null: false
+    t.string "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["goal_id"], name: "index_comments_on_goal_id"
+    t.index ["title", "author_id"], name: "index_comments_on_title_and_author_id", unique: true
+  end
 
   create_table "goals", force: :cascade do |t|
     t.integer "owner_id", null: false
@@ -32,6 +44,15 @@ ActiveRecord::Schema.define(version: 2021_04_07_205439) do
     t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username"
+  end
+
+  create_table "views", force: :cascade do |t|
+    t.integer "goal_id", null: false
+    t.integer "viewer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_views_on_goal_id"
+    t.index ["viewer_id"], name: "index_views_on_viewer_id"
   end
 
 end
