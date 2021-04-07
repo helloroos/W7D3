@@ -1,15 +1,13 @@
 require 'rails_helper'
+require 'factory_bot_rails'
 
 RSpec.describe User, type: :model do
-    # validation
-        # presence of :username, :password_digest, :session_token
-        # uniqueness_of :username, :session_token
-    # association
-        # goals
-        # comments
-        # views
-    # methods
-        # FIGAPER
+
+    subject(:user) do
+        FactoryBot.build(:user,
+        username: "climber12",
+        password: "password")
+    end
 
     it { should validate_presence_of(:username)}
     it { should validate_presence_of(:password_digest)}
@@ -21,3 +19,13 @@ RSpec.describe User, type: :model do
     # it { should have_many(:views)}
 
 end
+
+    # validation
+        # presence of :username, :password_digest, :session_token
+        # uniqueness_of :username, :session_token
+    # association
+        # goals
+        # comments
+        # views
+    # methods
+        # FIGAPER

@@ -217,7 +217,6 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
-  x86_64-darwin-18
   x86_64-darwin-20
 
 DEPENDENCIES
@@ -250,4 +249,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   2.2.15
+   2.2.9
